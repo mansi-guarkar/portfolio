@@ -116,9 +116,8 @@ export default function Contact() {
           {/* Form / Scheduler Panel */}
           <div className="lg:col-span-7 glass-card rounded-2xl border border-white/[0.08] p-6 sm:p-8 shadow-2xl flex flex-col justify-between bg-[#0b0e17]/60">
             <div>
-              {/* Custom High-Tech Toggle Tabs */}
-              <div className="flex border-b border-white/[0.08] pb-3 mb-6 items-center justify-between">
-                <div className="flex space-x-2">
+              <div className="flex flex-col sm:flex-row border-b border-white/[0.08] pb-3 mb-6 sm:items-center justify-between gap-3">
+                <div className="flex flex-wrap gap-2">
                   <button
                     onClick={() => setActiveTab("schedule")}
                     className={`px-3 py-1.5 rounded-md font-mono text-xs font-bold transition-all duration-300 ${activeTab === "schedule"
