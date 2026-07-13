@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-neon: #00ff88;
+  --color-brand-neon-hover: #00dd77;
+  --color-brand-dark: #04060b;
+  --color-brand-surface: #0b0e17;
+  --color-brand-elevated: #141a29;
+  --color-brand-border: #1f293d;
+  --color-brand-indigo: #6366f1;
+  --color-brand-violet: #8b5cf6;
+  --color-brand-muted: #8b8d9e;
+  
+  --font-sans: var(--font-inter), sans-serif;
+  --font-space: var(--font-space-grotesk), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+}
+
+:root {
+  --background: #04060b;
+  --foreground: #f3f4f6;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #04060b;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f293d;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff88;
+}
+
+/* Glassmorphism custom classes */
+.glass-card {
+  background: rgba(11, 14, 23, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(0, 255, 136, 0.3);
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.05);
+  transform: translateY(-2px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glow effects */
+.glow-neon {
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.15);
+}
+
+.glow-indigo {
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.15);
+}
+
+.glow-pink {
+  box-shadow: 0 0 30px rgba(255, 0, 127, 0.2);
+}
+
+/* Custom animation classes */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ========================================================
+   PRINT STYLES - STRICT OVERRIDES FOR CLEAN PDF/RESUME
+   ======================================================== */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    text-shadow: none !important;
+  }
+  
+  html, body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Force all cards to clear dark backgrounds */
+  .glass-card,
+  .glass-card-hover,
+  [class*="glass-card"],
+  [class*="bg-brand-dark"],
+  [class*="bg-brand-surface"],
+  [class*="bg-white/5"],
+  [class*="bg-brand-elevated"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-color: #d1d5db !important;
+    transform: none !important;
+  }
+
+  /* Hide navigation, buttons, and decorative blobs in print */
+  nav,
+  header,
+  footer,
+  .print\:hidden,
+  [class*="animate-pulse"],
+  [class*="blur-"] {
+    display: none !important;
+  }
+
+  /* Ensure all text is high contrast black or dark gray */
+  h1, h2, h3, h4, h5, h6,
+  p, span, div, li, a {
+    color: #000000 !important;
+  }
+
+  /* Allow subtle styling for borders inside print sheets */
+  .print-border-subtle {
+    border-color: #e5e7eb !important;
+  }
+
+  .print-bg-subtle {
+    background-color: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+  }
+}
+
+
